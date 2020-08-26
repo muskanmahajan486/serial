@@ -3,3 +3,6 @@
 
 ## activate 
 > sudo chown root:YOURUSERNAME /dev/ttyUSB0
+
+## check
+> echo "Hello Arduino" > /dev/ttyUSB0
