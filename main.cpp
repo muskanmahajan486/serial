@@ -7,7 +7,7 @@ using namespace std;
 int  main(void)
 {
 
-    mySerial serial("/dev/ttyACM0",115200);
+    mySerial serial("/dev/ttyUSB0",115200);
     while(1){
 
     // One Byte At the time
@@ -23,7 +23,7 @@ int  main(void)
     //serial.Send("this is it\r\n");
     //serial.Receive(serial,1);
    
-}
+    }
     return 0;
 
 }
