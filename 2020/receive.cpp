@@ -1,10 +1,15 @@
 #include <stdio.h>
 #include <string.h>
+#include <termios.h>
 
-char serialPortFilename[] = "/dev/ttyUSB1";
+char serialPortFilename[] = "/dev/ttyUSB0";
 
 int main()
 {
+		//termios mode;
+		//memset(&mode,0,sizeof( mode));
+		//tcgetattr(m_fd,& mode);
+
     char readBuffer[1024];
     int numBytesRead;
 
@@ -12,7 +17,7 @@ int main()
 
 	if (serPort == NULL)
 	{
-		printf("ERROR");	
+		printf("USB ERROR");	
 		return 0;
 	}
 
