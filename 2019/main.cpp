@@ -1,3 +1,9 @@
+/* 
+ author : danu Andrean
+ note : main
+
+*/
+
 #include "mySerial.h"
 #include <iostream>
 #include <stdio.h>

@@ -1,3 +1,10 @@
+/* 
+ author : danu Andrean
+ note : transmitter
+
+*/
+
+
 #include <stdio.h>
 #include <string.h>
 

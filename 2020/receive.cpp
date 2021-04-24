@@ -1,3 +1,10 @@
+/* 
+ author : danu Andrean
+ note : receiver
+
+*/
+
+
 #include <stdio.h>
 #include <string.h>
 #include <termios.h>
