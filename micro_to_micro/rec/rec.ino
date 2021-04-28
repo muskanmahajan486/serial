@@ -8,7 +8,7 @@
 SoftwareSerial ser(D6,D5);
 
 int starts = 0;
-String len = "";
+int checksum = 0;
 
 void setup() {
   ser.begin(9600);
@@ -17,34 +17,41 @@ void setup() {
  
 void loop() {
   String content = "";
+  String content_check = "";
+  
   if (ser.available()) {
     while (ser.available()) {
       
       char data = (char)ser.read() ;
-//      Serial.print(starts);/
-      
+      Serial.print(starts);//
+      if(data == '|'){
+        checksum = 1;
+      }
+      //start
       if(data=='*')
         starts =1;
-        
+       //end
       else if(data =='#'){
-          starts =0;
-          break;
-        }
+        starts =0;
+        checksum = 0;
+        break;
+      }
         
       else if(starts == 1){
-        if(input == 0)
-          len + = data;
-        
-        if(data == '/')
-          input =1;
-        
-        else if(input == 1)
+        if(checksum == 0 ){
           content += data;
+        }
+        else{
+          content_check += data; 
+        }
+        
       }
       
     }
   }
   Serial.println(content);
-  delay(3000);
+  delay(1200);
+  
   content = "";
+  content_check = "";
 }
