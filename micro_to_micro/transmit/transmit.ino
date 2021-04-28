@@ -14,6 +14,12 @@ void setup() {
  
 void loop() {
   char *data="Danu Andrean";
+  String len= (String)strlen(data);
+  String key[]={"ss","ff","dd"};
+  ser.write("*");
+  ser.write(data);/////
+  ser.write("|");
   ser.write(data);
+  ser.write("#");
   delay(1000);
 }
