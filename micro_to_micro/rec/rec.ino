@@ -1,14 +1,9 @@
-/* 
- author : danu Andrean
- note : receiver
-
-*/
-
 #include <SoftwareSerial.h>
 SoftwareSerial ser(D6,D5);
 
 int starts = 0;
 int checksum = 0;
+int bypass = 0;
 
 void setup() {
   ser.begin(9600);
@@ -16,6 +11,7 @@ void setup() {
 }
  
 void loop() {
+  String data_decode ="";
   String content = "";
   String content_check = "";
   
@@ -23,7 +19,7 @@ void loop() {
     while (ser.available()) {
       
       char data = (char)ser.read() ;
-      Serial.print(starts);//
+//      Serial.print(starts);//
       if(data == '|'){
         checksum = 1;
       }
@@ -32,8 +28,16 @@ void loop() {
         starts =1;
        //end
       else if(data =='#'){
+        
+        Serial.println("check");
+        if(content != content_check){
+          content = "";
+          content_check = "";
+        }
+        data_decode = content;
         starts =0;
         checksum = 0;
+        bypass =0;
         break;
       }
         
@@ -42,15 +46,17 @@ void loop() {
           content += data;
         }
         else{
-          content_check += data; 
+          if( bypass == 0)
+             bypass =1;
+          else
+            content_check += data; 
+          
         }
-        
       }
-      
     }
   }
-  Serial.println(content);
-  delay(1200);
+  Serial.println(data_decode);
+  delay(100);
   
   content = "";
   content_check = "";
