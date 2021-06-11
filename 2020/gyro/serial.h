@@ -1,3 +1,5 @@
+/* Author : Danu andrean */
+
 #ifndef SERIAL
 #define SERIAL
 
@@ -6,13 +8,14 @@
 #include <termios.h>
 #include <stdlib.h>     /* atoi */
 
-char serialPortFilename[] = "/dev/ttyUSB1";
+char serialPortFilename[] = "/dev/ttyUSB0";
 
 class Serial{
    public :
    FILE *serPort ;
    char readBuffer[1024];
    int data_gyro;
+   int temp;
    int init();
    int gyro();
 };
@@ -39,10 +42,15 @@ int Serial::gyro(){
    fread(this->readBuffer, sizeof(char),1024,this->serPort);
    if(sizeof(this->readBuffer) != 0)
    {
-      // printf(readBuffer);
-      this->data_gyro= atoi(this->readBuffer);
+      this->temp= atoi(this->readBuffer);
+      // printf("%d",this->data_gyro);
    }
-	
+   if (this->temp == NULL){
+    // send prev
+     return this->data_gyro;
+   }
+   
+   this->data_gyro = this->temp;
    return this->data_gyro;
 }
 
