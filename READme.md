@@ -3,6 +3,9 @@
 
 ## activate 
 > sudo chown root:YOURUSERNAME /dev/ttyUSB0
+> 
+## permanent active using dialout
+> sudo usermod -a -G dialout $USER
 
 ## check
 > echo "Hello Arduino" > /dev/ttyUSB0
